@@ -1,3 +1,5 @@
+default: typecheck test
+
 test:
     uv run pytest
 
