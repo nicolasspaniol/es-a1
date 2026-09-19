@@ -1,5 +1,6 @@
 from typing import Optional, TYPE_CHECKING
 
+# this avoids circular imports while preserving typing; payment.py already imports order.py
 if TYPE_CHECKING:
     from es_a1.payment import PaymentProcessor
 
