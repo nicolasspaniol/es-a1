@@ -1,6 +1,6 @@
 import pytest
 from es_a1.app_config import AppConfig
-from es_a1.order import OrderBuilder, Order
+from es_a1.order import Order, Product, OrderBuilder
 
 
 def test_singleton():
@@ -32,15 +32,17 @@ def test_builder():
     dos campos a ela passados.
     '''
 
+    melancia = Product('melancia', 10.0)
+    banana = Product('banana', 20.0)
     a = OrderBuilder() \
         .com_cliente('Cliente') \
-        .adicionar_produto('melancia') \
-        .adicionar_produto('banana') \
+        .adicionar_produto(melancia) \
+        .adicionar_produto(banana) \
         .com_endereco('Rua A') \
         .com_cupom('DESC100') \
         .build()
 
-    b = Order('Cliente', ['melancia', 'banana'], 'Rua A', 'DESC100', None, None)
+    b = Order('Cliente', [melancia, banana], 'Rua A', 'DESC100', None, None)
 
     assert a.cliente == b.cliente
     assert a.produtos == b.produtos

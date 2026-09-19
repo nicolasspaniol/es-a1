@@ -1,4 +1,4 @@
-from es_a1.order import OrderBuilder, Product
+from es_a1.order import Product, OrderBuilder
 
 
 # TODO: mudar nome da funcao

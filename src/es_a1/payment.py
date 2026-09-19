@@ -4,22 +4,22 @@ from es_a1.order import Order
 
 class Payment(ABC):
     @abstractmethod
-    def pay(self, amount: int):
+    def pay(self, amount: float):
         ...
 
 
 class PixPayment(Payment):
-    def pay(self, amount: int):
+    def pay(self, amount: float):
         ...
 
 
 class CreditCardPayment(Payment):
-    def pay(self, amount: int):
+    def pay(self, amount: float):
         ...
 
 
 class BoletoPayment(Payment):
-    def pay(self, amount: int):
+    def pay(self, amount: float):
         ...
 
 
