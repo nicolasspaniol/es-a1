@@ -13,7 +13,7 @@ def test_singleton():
 
     RELEVÂNCIA: a implementação do singleton por decorador substitui a classe que o leva
     por uma função, o que não é desejado. Aqui verificamos que isso não é o caso na nossa
-    impolementação.
+    implementação.
     '''
 
     assert isinstance(AppConfig, type)
