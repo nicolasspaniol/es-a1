@@ -1,8 +1,8 @@
-from src.es_a1.order import OrderBuilder, Product
+from es_a1.order import OrderBuilder, Product
 
 
-def TestOrder():
-
+# TODO: mudar nome da funcao
+def test_order_():
     pedido = (OrderBuilder()
               .com_cliente("Maria Silva")
               .adicionar_produto(Product("Teclado", 100.0))
@@ -11,7 +11,3 @@ def TestOrder():
     
     assert pedido.cliente == "Maria Silva", "Error cliente"
     assert pedido.endereco == "Rua Central 456", "Error endereco"
-
-
-# Ejecutamos la función de pruebas
-TestOrder()
