@@ -33,3 +33,19 @@ Como cada módulo só é importado uma vez, o objeto do módulo se comporta como
 **3. Identifique uma possível consequência de possuir um objeto de configuração global compartilhado.**
 Se, em algum momento, for identificada a necessidade de se ter mais arquivos de configuração (por exemplo, para usuários diferentes), haverá o trabalho de adaptar o código pra essa possibilidade.
 
+## 3. Pagamento e Factory Method
+
+**1. Identifique os papéis de: Creator, Concrete Creator, Product, Concrete Product.**
+- Creator: `PaymentProcessor`
+- Concrete Creator: `PixProcessor`, `CreditCardProcessor`, `BoletoProcessor`
+- Product: `Payment`
+- Concrete Product: `PixPayment`, `CreditCardPayment`, `BoletoPayment`
+
+**2. Explique por que uma função contendo simplesmente uma sequência de if/elif
+escolhendo classes concretas não é, por si só, suficiente para caracterizar o padrão
+Factory Method.**
+O _Factory Method_ permite que novos "produtos" sejam adicionados no sistema sem que o código já existente precise ser alterado, o que não seria o caso com os `if`s/`elif`s.
+
+**3. Considere que uma nova forma de pagamento seja adicionada posteriormente.
+Explique quais partes da sua implementação precisariam ser alteradas.**
+Só precisariam ser adicionadas as classes relacionadas a essa nova forma de pagamento, ex: `GooglePayPayment`, `GooglePayProcessor`.
