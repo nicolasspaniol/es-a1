@@ -9,6 +9,7 @@ class Product:
 
 
 class Order:
+
     def __init__(self, cliente, produtos, endereco, cupom, tipo_pagamento, observacao):
         self.cliente = cliente
         self.produtos = produtos
