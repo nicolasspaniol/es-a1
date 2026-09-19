@@ -1,5 +1,4 @@
 # Respostas escritas
----
 
 ## 1. Configuração da aplicação
 
