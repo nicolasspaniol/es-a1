@@ -1,31 +1,25 @@
 from typing import Optional, TYPE_CHECKING
+from dataclasses import dataclass
 
 # this avoids circular imports while preserving typing; payment.py already imports order.py
 if TYPE_CHECKING:
     from es_a1.payment import PaymentProcessor
 
 
+@dataclass(eq=False)
 class Product:
-    def __init__(self, nome: str, preco: float):
-        self.nome = nome
-        self.preco = preco
+    nome: str
+    preco: float
 
 
+@dataclass(eq=False)
 class Order:
-    def __init__(
-            self,
-            cliente: str,
-            produtos: list[Product],
-            endereco: Optional[str],
-            cupom: Optional[str],
-            tipo_pagamento: Optional[PaymentProcessor],
-            observacao: Optional[str]):
-        self.cliente = cliente
-        self.produtos = produtos
-        self.endereco = endereco
-        self.cupom = cupom
-        self.tipo_pagamento = tipo_pagamento
-        self.observacao = observacao
+    cliente: str
+    produtos: list[Product]
+    endereco: Optional[str]
+    cupom: Optional[str]
+    tipo_pagamento: Optional[PaymentProcessor]
+    observacao: Optional[str]
 
     def total(self) -> float:
         return sum(produto.preco for produto in self.produtos)
