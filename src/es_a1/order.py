@@ -40,31 +40,31 @@ class OrderBuilder:
         self._forma_pagamento = None
         self._observacao = None
 
-    def com_cliente(self, cliente):
+    def com_cliente(self, cliente: str):
         self._cliente = cliente
         return self
 
-    def adicionar_produto(self, produto):
+    def adicionar_produto(self, produto: Product):
         self._produtos.append(produto)
         return self
 
-    def com_endereco(self, endereco):
+    def com_endereco(self, endereco: str):
         self._endereco = endereco
         return self
 
-    def com_cupom(self, cupom):
+    def com_cupom(self, cupom: str):
         self._cupom = cupom
         return self
 
-    def com_forma_pagamento(self, forma):
+    def com_forma_pagamento(self, forma: PaymentProcessor):
         self._forma_pagamento = forma
         return self
 
-    def com_observacao(self, obs):
+    def com_observacao(self, obs: str):
         self._observacao = obs
         return self
 
-    def build(self):
+    def build(self) -> Order:
         if not self._cliente:
             raise ValueError("O pedido precisa ter um cliente.")
         

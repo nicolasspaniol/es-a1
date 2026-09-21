@@ -1,20 +1,21 @@
 from abc import ABC, abstractmethod
+from es_a1.order import Order
 
 
 class Checkout(ABC):
     @abstractmethod
-    def show(self, order):
+    def show(self, order: Order):
         pass
 
 
 class Notification(ABC):
     @abstractmethod
-    def send(self, order):
+    def send(self, order: Order):
         pass
 
 
 class WebCheckout(Checkout):
-    def show(self, order):
+    def show(self, order: Order):
         print("=== CHECKOUT WEB ===")
         print(f"Cliente: {order.cliente}")
         print(f"Total: R$ {order.total():.2f}")
@@ -22,7 +23,7 @@ class WebCheckout(Checkout):
 
 
 class WebNotification(Notification):
-    def send(self, order):
+    def send(self, order: Order):
         print(
             f"Notificacao WEB enviada para "
             f"{order.cliente}. Pedido no valor de "
@@ -31,7 +32,7 @@ class WebNotification(Notification):
 
 
 class MobileCheckout(Checkout):
-    def show(self, order):
+    def show(self, order: Order):
         print("=== CHECKOUT MOBILE ===")
         print(f"Cliente: {order.cliente}")
         print(f"Total: R$ {order.total():.2f}")
@@ -39,7 +40,7 @@ class MobileCheckout(Checkout):
 
 
 class MobileNotification(Notification):
-    def send(self, order):
+    def send(self, order: Order):
         print(
             f"Notificacao MOBILE enviada para "
             f"{order.cliente}. Pedido no valor de "
