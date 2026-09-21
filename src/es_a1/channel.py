@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from enum import Enum
 from es_a1.order import Order
 
 
@@ -73,3 +74,47 @@ class MobileFactory(ChannelFactory):
 
     def create_notification(self) -> Notification:
         return MobileNotification()
+
+
+channel_factories = {
+    'WEB': WebFactory(),
+    'MOBILE': MobileFactory()
+}
+
+
+# I'm really not sure about this implementation as well as the dict above
+def get_channel_factory(channel: str):
+    return channel_factories[channel]
+
+
+# ----------------------------------------------------------------
+#       adding Kiosk without touching the existing code
+# ----------------------------------------------------------------
+
+class KioskCheckout(Checkout):
+    def show(self, order: Order):
+        print("=== CHECKOUT WEB ===")
+        print(f"Cliente: {order.cliente}")
+        print(f"Total: R$ {order.total():.2f}")
+        print(f"Forma de pagamento: {order.tipo_pagamento}")
+
+
+class KioskNotification(Notification):
+    def send(self, order: Order):
+        print(
+            f"Notificacao WEB enviada para "
+            f"{order.cliente}. Pedido no valor de "
+            f"R$ {order.total():.2f}."
+        )
+
+ 
+class KioskFactory(ChannelFactory):
+    def create_checkout(self) -> Checkout:
+        return KioskCheckout()
+
+    def create_notification(self) -> Notification:
+        return KioskNotification()
+
+
+# this may be wrong
+channel_factories['KIOSK'] = KioskFactory()
