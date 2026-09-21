@@ -10,17 +10,17 @@ class Payment(ABC):
 
 class PixPayment(Payment):
     def pay(self, amount: float):
-        ...
+        print(f'Pago via Pix: {amount:.2f}')
 
 
 class CreditCardPayment(Payment):
     def pay(self, amount: float):
-        ...
+        print(f'Pago via cartão de crédito: {amount:.2f}')
 
 
 class BoletoPayment(Payment):
     def pay(self, amount: float):
-        ...
+        print(f'Pago via boleto: {amount:.2f}')
 
 
 # factories -------------------
@@ -31,7 +31,7 @@ class PaymentProcessor(ABC):
         ...
 
     def process_order(self, order: Order):
-        return self.create_payment().pay(order.total())
+        self.create_payment().pay(order.total())
 
 
 class PixProcessor(PaymentProcessor):
