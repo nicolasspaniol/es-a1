@@ -76,7 +76,3 @@ class OrderBuilder:
             self._forma_pagamento, 
             self._observacao
         )
-
-
-
-
