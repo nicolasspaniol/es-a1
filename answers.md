@@ -31,6 +31,8 @@ assert AppConfig2.debug
 ```
 
 Como cada módulo só é importado uma vez, o objeto do módulo se comporta como um _singleton_.
+Outra opção equivalente seria colocar a classe do _singleton_, privada, no módulo e expor apenas
+uma instância dela.
 
 **3. Identifique uma possível consequência de possuir um objeto de configuração global
 compartilhado.**
