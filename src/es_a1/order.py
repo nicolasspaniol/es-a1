@@ -13,14 +13,13 @@ class Product:
 
 class Order:
     def __init__(
-        self,
+            self,
             cliente: str,
             produtos: list[Product],
             endereco: Optional[str],
             cupom: Optional[str],
             tipo_pagamento: Optional[PaymentProcessor],
-            observacao: Optional[str]
-        ):
+            observacao: Optional[str]):
         self.cliente = cliente
         self.produtos = produtos
         self.endereco = endereco
@@ -66,7 +65,6 @@ class OrderBuilder:
         return self
 
     def build(self):
-        
         if not self._cliente:
             raise ValueError("O pedido precisa ter um cliente.")
         

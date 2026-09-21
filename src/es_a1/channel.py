@@ -1,21 +1,19 @@
 from abc import ABC, abstractmethod
 
-class Checkout(ABC):
 
+class Checkout(ABC):
     @abstractmethod
     def show(self, order):
         pass
 
 
 class Notification(ABC):
-
     @abstractmethod
     def send(self, order):
         pass
 
 
 class WebCheckout(Checkout):
-
     def show(self, order):
         print("=== CHECKOUT WEB ===")
         print(f"Cliente: {order.cliente}")
@@ -24,7 +22,6 @@ class WebCheckout(Checkout):
 
 
 class WebNotification(Notification):
-
     def send(self, order):
         print(
             f"Notificacao WEB enviada para "
@@ -34,7 +31,6 @@ class WebNotification(Notification):
 
 
 class MobileCheckout(Checkout):
-
     def show(self, order):
         print("=== CHECKOUT MOBILE ===")
         print(f"Cliente: {order.cliente}")
@@ -43,7 +39,6 @@ class MobileCheckout(Checkout):
 
 
 class MobileNotification(Notification):
-
     def send(self, order):
         print(
             f"Notificacao MOBILE enviada para "
@@ -54,7 +49,6 @@ class MobileNotification(Notification):
 # abstract factory
 
 class ChannelFactory(ABC):
-
     @abstractmethod
     def create_checkout(self) -> Checkout:
         pass
@@ -65,7 +59,6 @@ class ChannelFactory(ABC):
 
 
 class WebFactory(ChannelFactory):
-
     def create_checkout(self) -> Checkout:
         return WebCheckout()
 
@@ -74,7 +67,6 @@ class WebFactory(ChannelFactory):
 
 
 class MobileFactory(ChannelFactory):
-
     def create_checkout(self) -> Checkout:
         return MobileCheckout()
 
