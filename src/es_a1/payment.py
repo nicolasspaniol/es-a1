@@ -30,30 +30,20 @@ class PaymentProcessor(ABC):
     def create_payment(self) -> Payment:
         ...
 
-    @abstractmethod
     def process_order(self, order: Order):
-        ...
+        return self.create_payment().pay(order.total())
 
 
 class PixProcessor(PaymentProcessor):
     def create_payment(self):
         return PixPayment()
 
-    def process_order(self, order: Order):
-        return self.create_payment().pay(order.total())
-
 
 class CreditCardProcessor(PaymentProcessor):
     def create_payment(self):
         return CreditCardPayment()
 
-    def process_order(self, order: Order):
-        return self.create_payment().pay(order.total())
-
 
 class BoletoProcessor(PaymentProcessor):
     def create_payment(self):
         return BoletoPayment()
-
-    def process_order(self, order: Order):
-        return self.create_payment().pay(order.total())
