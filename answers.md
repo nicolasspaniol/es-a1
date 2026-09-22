@@ -86,9 +86,9 @@ TODO
 Escolhemos adicionar o kiosk no próprio arquivo `channel.py`, onde ficam os outros canais.
 Só precisamos alterar este arquivo e as alterações foram apenas adições, sem ser necessário
 alterar o corpo de nenhuma função:
-- adicionamos KioskCheckou
-- adicionamos KioskNotification
-- adicionamos KioskFactory
+- adicionamos `KioskCheckout`
+- adicionamos `KioskNotification`
+- adicionamos `KioskFactory`
 - adicionamos ao `dict` com os tipos de pagamento a entrada `'KIOSK'`
 
 **2. Explique por que as alterações realizadas são ou não compatíveis com o princípio OCP.**
