@@ -33,6 +33,9 @@ class PaymentProcessor(ABC):
     def process_order(self, order: Order):
         self.create_payment().pay(order.total())
 
+        # did this so as to be able to verify payment type compliance
+        order.tipo_pagamento = self
+
 
 class PixProcessor(PaymentProcessor):
     def create_payment(self):
