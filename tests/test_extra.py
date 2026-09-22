@@ -1,6 +1,7 @@
 import pytest
 from es_a1.app_config import AppConfig
 from es_a1.order import Order, Product, OrderBuilder
+from es_a1.channel import Checkout, Notification, WebFactory, MobileFactory
 
 
 def test_singleton():
@@ -52,5 +53,23 @@ def test_builder():
     assert a.observacao == b.observacao
 
 
-def test_factory():
+@pytest.mark.parametrize("factory_cls", [MobileFactory, WebFactory])
+def test_factory(factory_cls):
+    '''
+    Verifica se os objetos criados por cada uma das fábricas herdam, de fato,
+    da classe abstrata daquele tipo de objeto.
+
+    ESPERADO: que `create_notification()` e `create_checkout()` retornem objetos
+    que herdam `Notification` e `Checkout`, respectivamente, para todas as
+    fábricas implementadas.
+
+    RELEVÂNCIA: a propriedade testada é necessária para que o padrão caracterizado
+    pelas classes seja realmente uma Abstract Factory. Em Python, que não é uma
+    linguagem com tipagem estática, as classes podem descumprir tal propriedade
+    sem levantar nenhum erro.
+    '''
     ...
+
+    factory = factory_cls()
+    assert isinstance(factory.create_notification(), Notification)
+    assert isinstance(factory.create_checkout(), Checkout)
