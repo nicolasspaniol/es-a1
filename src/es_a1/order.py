@@ -1,3 +1,4 @@
+from itertools import product
 from typing import Optional, TYPE_CHECKING
 from dataclasses import dataclass
 
@@ -8,65 +9,65 @@ if TYPE_CHECKING:
 
 @dataclass(eq=False)
 class Product:
-    nome: str
-    preco: float
+    name: str
+    price: float
 
 
 @dataclass(eq=False)
 class Order:
-    cliente: str
-    produtos: list[Product]
-    endereco: Optional[str]
-    cupom: Optional[str]
-    tipo_pagamento: Optional[PaymentProcessor]
-    observacao: Optional[str]
+    client: str
+    products: list[Product]
+    address: Optional[str]
+    coupon: Optional[str]
+    payment_type: Optional[PaymentProcessor]
+    observation: Optional[str]
 
     def total(self) -> float:
-        return sum(produto.preco for produto in self.produtos)
+        return sum(product.price for product in self.products )
 
 
 class OrderBuilder:
     def __init__(self):
-        self._cliente = None
-        self._produtos = []
-        self._endereco = None
-        self._cupom = None
-        self._forma_pagamento = None
-        self._observacao = None
+        self._client = None
+        self._products = []
+        self._address = None
+        self._coupon = None
+        self._payment_type = None
+        self._observation = None
 
-    def com_cliente(self, cliente: str):
-        self._cliente = cliente
+    def com_client(self, client: str):
+        self._client = client
         return self
 
-    def adicionar_produto(self, produto: Product):
-        self._produtos.append(produto)
+    def adicionar_product(self, product: Product):
+        self._products.append(product)
         return self
 
-    def com_endereco(self, endereco: str):
-        self._endereco = endereco
+    def com_address(self, address: str):
+        self._address = address
         return self
 
-    def com_cupom(self, cupom: str):
-        self._cupom = cupom
+    def com_coupon(self, coupon: str):
+        self._coupon = coupon
         return self
 
-    def com_forma_pagamento(self, forma: PaymentProcessor):
-        self._forma_pagamento = forma
+    def com_payment_type(self, payment_type: PaymentProcessor):
+        self._payment_type = payment_type
         return self
 
-    def com_observacao(self, obs: str):
-        self._observacao = obs
+    def com_observation(self, observation: str):
+        self._observation = observation
         return self
 
     def build(self) -> Order:
-        if not self._cliente:
+        if not self._client:
             raise ValueError("O pedido precisa ter um cliente.")
         
         return Order(
-            self._cliente, 
-            self._produtos, 
-            self._endereco, 
-            self._cupom, 
-            self._forma_pagamento, 
-            self._observacao
+            self._client, 
+            self._products, 
+            self._address, 
+            self._coupon, 
+            self._payment_type, 
+            self._observation
         )
