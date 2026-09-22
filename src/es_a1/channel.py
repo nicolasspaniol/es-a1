@@ -18,16 +18,16 @@ class Notification(ABC):
 class WebCheckout(Checkout):
     def show(self, order: Order):
         print("=== CHECKOUT WEB ===")
-        print(f"Cliente: {order.cliente}")
+        print(f"Cliente: {order.client}")
         print(f"Total: R$ {order.total():.2f}")
-        print(f"Forma de pagamento: {order.tipo_pagamento}")
+        print(f"Forma de pagamento: {order.payment_type}")
 
 
 class WebNotification(Notification):
     def send(self, order: Order):
         print(
             f"Notificacao WEB enviada para "
-            f"{order.cliente}. Pedido no valor de "
+            f"{order.client}. Pedido no valor de "
             f"R$ {order.total():.2f}."
         )
 
@@ -35,16 +35,16 @@ class WebNotification(Notification):
 class MobileCheckout(Checkout):
     def show(self, order: Order):
         print("=== CHECKOUT MOBILE ===")
-        print(f"Cliente: {order.cliente}")
+        print(f"Cliente: {order.client}")
         print(f"Total: R$ {order.total():.2f}")
-        print(f"Forma de pagamento: {order.tipo_pagamento}")
+        print(f"Forma de pagamento: {order.payment_type}")
 
 
 class MobileNotification(Notification):
     def send(self, order: Order):
         print(
             f"Notificacao MOBILE enviada para "
-            f"{order.cliente}. Pedido no valor de "
+            f"{order.client}. Pedido no valor de "
             f"R$ {order.total():.2f}."
         )
 
@@ -94,16 +94,16 @@ def get_channel_factory(channel: str):
 class KioskCheckout(Checkout):
     def show(self, order: Order):
         print("=== CHECKOUT WEB ===")
-        print(f"Cliente: {order.cliente}")
+        print(f"Cliente: {order.client}")
         print(f"Total: R$ {order.total():.2f}")
-        print(f"Forma de pagamento: {order.tipo_pagamento}")
+        print(f"Forma de pagamento: {order.payment_type}")
 
 
 class KioskNotification(Notification):
     def send(self, order: Order):
         print(
             f"Notificacao WEB enviada para "
-            f"{order.cliente}. Pedido no valor de "
+            f"{order.client}. Pedido no valor de "
             f"R$ {order.total():.2f}."
         )
 

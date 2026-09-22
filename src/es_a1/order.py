@@ -35,27 +35,27 @@ class OrderBuilder:
         self._payment_type = None
         self._observation = None
 
-    def com_client(self, client: str):
+    def with_client(self, client: str):
         self._client = client
         return self
 
-    def adicionar_product(self, product: Product):
+    def add_product(self, product: Product):
         self._products.append(product)
         return self
 
-    def com_address(self, address: str):
+    def with_address(self, address: str):
         self._address = address
         return self
 
-    def com_coupon(self, coupon: str):
+    def with_coupon(self, coupon: str):
         self._coupon = coupon
         return self
 
-    def com_payment_type(self, payment_type: PaymentProcessor):
+    def with_payment_type(self, payment_type: PaymentProcessor):
         self._payment_type = payment_type
         return self
 
-    def com_observation(self, observation: str):
+    def with_observation(self, observation: str):
         self._observation = observation
         return self
 

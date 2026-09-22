@@ -34,7 +34,7 @@ class PaymentProcessor(ABC):
         self.create_payment().pay(order.total())
 
         # did this so as to be able to verify payment type compliance
-        order.tipo_pagamento = self
+        order.payment_type = self
 
 
 class PixProcessor(PaymentProcessor):
