@@ -83,10 +83,17 @@ TODO
 ## 5. Seleção de fábrica e alteração do sistema
 
 **1. Liste os arquivos criados ou alterados para adicionar KIOSK.**
-TODO
+Escolhemos adicionar o kiosk no próprio arquivo `channel.py`, onde ficam os outros canais.
+Só precisamos alterar este arquivo e as alterações foram apenas adições, sem ser necessário
+alterar o corpo de nenhuma função:
+- adicionamos KioskCheckou
+- adicionamos KioskNotification
+- adicionamos KioskFactory
+- adicionamos ao `dict` com os tipos de pagamento a entrada `'KIOSK'`
 
 **2. Explique por que as alterações realizadas são ou não compatíveis com o princípio OCP.**
-TODO
+São compatíveis, pois pudemos adicionar um novo tipo de pagamento, interoperável com os
+anteriores, sem alterar nada do código já implementado.
 
 ## 6. Responsabilidades e integração
 
