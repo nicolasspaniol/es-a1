@@ -4,10 +4,10 @@ from es_a1.order import Product, OrderBuilder
 # TODO: mudar nome da funcao
 def test_order_():
     pedido = (OrderBuilder()
-              .com_cliente("Maria Silva")
-              .adicionar_produto(Product("Teclado", 100.0))
-              .com_endereco("Rua Central 456")
+              .with_client("Maria Silva")
+              .add_product(Product("Teclado", 100.0))
+              .with_address("Rua Central 456")
               .build())
     
-    assert pedido.cliente == "Maria Silva", "Error cliente"
-    assert pedido.endereco == "Rua Central 456", "Error endereco"
+    assert pedido.client == "Maria Silva", "Error cliente"
+    assert pedido.address == "Rua Central 456", "Error endereco"

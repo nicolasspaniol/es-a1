@@ -7,11 +7,11 @@ produto2 = Product("Teclado", 250.00)
 
 order = (
     OrderBuilder()
-    .com_cliente("Ximena")
-    .adicionar_produto(produto1)
-    .adicionar_produto(produto2)
-    .com_endereco("Rio de Janeiro")
-    .com_forma_pagamento("PIX")
+    .with_client("Ximena")
+    .add_product(produto1)
+    .add_product(produto2)
+    .with_address("Rio de Janeiro")
+    .with_payment_type("PIX")
     .build()
 )
 

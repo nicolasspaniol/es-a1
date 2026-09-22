@@ -36,21 +36,21 @@ def test_builder():
     melancia = Product('melancia', 10.0)
     banana = Product('banana', 20.0)
     a = OrderBuilder() \
-        .com_cliente('Cliente') \
-        .adicionar_produto(melancia) \
-        .adicionar_produto(banana) \
-        .com_endereco('Rua A') \
-        .com_cupom('DESC100') \
+        .with_client('Cliente') \
+        .add_product(melancia) \
+        .add_product(banana) \
+        .with_address('Rua A') \
+        .with_coupon('DESC100') \
         .build()
 
     b = Order('Cliente', [melancia, banana], 'Rua A', 'DESC100', None, None)
 
-    assert a.cliente == b.cliente
-    assert a.produtos == b.produtos
-    assert a.endereco == b.endereco
-    assert a.cupom == b.cupom
-    assert a.tipo_pagamento == b.tipo_pagamento
-    assert a.observacao == b.observacao
+    assert a.client == b.client
+    assert a.products == b.products
+    assert a.address == b.address
+    assert a.coupon == b.coupon
+    assert a.payment_type == b.payment_type
+    assert a.observation == b.observation
 
 
 @pytest.mark.parametrize("factory_cls", [MobileFactory, WebFactory])
