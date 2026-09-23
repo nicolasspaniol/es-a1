@@ -44,11 +44,14 @@ possibilidade.
 
 **1. Identifique quais componentes da sua implementação correspondem ao Builder e ao
 objeto construído.**
-TODO
+A classe OrderBuilder corresponde ao Builder, enquanto Order representa o objeto construído. 
 
 **2. Explique por que seria possível construir o pedido diretamente pelo construtor de Order
 e qual seria a diferença em relação à solução adotada.**
-TODO
+
+Como Order é uma dataclass, seu construtor permite receber diretamente os atributos do pedido. Portanto, seria possível criar um pedido sem utilizar o builder.
+
+O OrderBuilder permite informar esses dados gradualmente, com métodos que tornam explícita a finalidade de cada valor. Na implementação atual, a construção direta exige informar todos os argumentos, mesmo que alguns recebam None, e não executa a validação definida no builder.
 
 ## 3. Pagamento e Factory Method
 
