@@ -75,13 +75,13 @@ ex: `GooglePayPayment`, `GooglePayProcessor`.
 ## 4. Famílias por canal
 
 **1. Explique por que checkout e notificação podem ser considerados uma família de produtos.**
-TODO
+Chekout e notificação estão relacionados ao mesmo canal de venda. WebCheckout e WebNotification formam a família WEB, enquanto MobileCheckout e MobileNotification formam a família MOBILE.
 
 **2. Explique qual problema a Abstract Factory resolve nessa situação.**
-TODO
+A Abstract Factory isola a criação de famílias de objetos. O código de integração interage apenas com a interface ChannelFactory, sem depender das classes. Novos canais (como KIOSK) podem ser adicionados criando uma nova fábrica e seus produtos, sem necessidade de modificar o código consumidor existente.
 
 **3. Explique por que o pagamento não deve fazer parte da fábrica responsável pelo canal.**
-TODO
+Porque canal de venda e o tipo de pagamento sao indepentes do canal. Incluir o pagamento na fábrica do canal misturaria essas responsabilidades e criaria um acoplamento desnecessário.
 
 ## 5. Seleção de fábrica e alteração do sistema
 
@@ -101,15 +101,24 @@ anteriores, sem alterar nada do código já implementado.
 ## 6. Responsabilidades e integração
 
 **1. Qual é a responsabilidade principal de cada componente criado?**
-TODO
+- order_service.py — criado: contém OrderService, responsável por coordenar checkout, pagamento e notificação, delegando essas operações aos colaboradores.
+- __init__.py — modificado: sua função main() foi adaptada para obter AppConfig, construir os pedidos com OrderBuilder, selecionar o canal e o processador de pagamento e demonstrar a integração com WEB e KIOSK.
+- __main__.py — criado: chama main(), permitindo executar a aplicação com python -m es_a1.
+
+As demais responsabilidades permanecem nos componentes implementados nas partes anteriores.
 
 **2. Escolha três componentes diferentes e indique uma mudança que deveria ficar
 restrita a cada um deles.**
-TODO
+
+- WebCheckout: uma mudança na organização das informações exibidas no checkout WEB deve ficar nessa classe, preservando a interface show(order).
+- PixPayment: uma mudança no mecanismo de execução do pagamento PIX deve ficar nessa classe, preservando a interface pay(amount).
+- KioskNotification: uma mudança no texto da notificação do KIOSK deve ficar nessa classe, preservando a interface send(order).
 
 **3. Identifique uma decisão de projeto da sua solução que poderia ser diferente.
 Explique qual seria a alternativa e qual seria a consequência dessa mudança.**
-TODO
+
+Uma decisão foi armazenar um objeto PaymentProcessor no atributo payment_type de Order. Isso permite que o coordenador utilize diretamente o processador associado ao pedido.
+Uma alternativa seria armazenar apenas um identificador da forma de pagamento e resolver o processador correspondente na inicialização da aplicação, passando-o ao coordenador.
 
 ## 7. Testes e alterações
 

@@ -2,8 +2,7 @@ from es_a1.app_config import AppConfig
 from es_a1.channel import get_channel_factory
 from es_a1.order import OrderBuilder, Product
 from es_a1.order_service import OrderService
-from es_a1.payment import PixProcessor, CreditCardProcessor
-
+from es_a1.payment import  PixProcessor, CreditCardProcessor, BankTransferProcessor                                
 
 def main() -> None:
     config = AppConfig()
@@ -15,6 +14,7 @@ def main() -> None:
     scenarios = [
         ("WEB", PixProcessor()),
         ("KIOSK", CreditCardProcessor()),
+        ("MOBILE", BankTransferProcessor()),
     ]
 
     for channel, processor in scenarios:

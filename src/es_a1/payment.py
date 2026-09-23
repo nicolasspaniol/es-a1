@@ -23,6 +23,11 @@ class BoletoPayment(Payment):
         print(f'Pago via boleto: {amount:.2f}')
 
 
+class BankTransferPayment(Payment):
+    def pay(self, amount: float):
+        print(f"Pago via transferência bancária: {amount:.2f}")
+
+
 # factories -------------------
 
 class PaymentProcessor(ABC):
@@ -50,3 +55,8 @@ class CreditCardProcessor(PaymentProcessor):
 class BoletoProcessor(PaymentProcessor):
     def create_payment(self):
         return BoletoPayment()
+
+
+class BankTransferProcessor(PaymentProcessor):
+    def create_payment(self) -> Payment:
+        return BankTransferPayment()    
