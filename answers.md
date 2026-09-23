@@ -127,17 +127,22 @@ Ver [test_extra.py](tests/test_extra.py)
 ## 8. Situação de mudança
 
 **1. Quais arquivos foram criados ou modificados?**
-TODO
+Os arquivos que foram modificados são 
+ - payment.py: adicionamos BankTransferPayment e BankTransferProcessor
+ - __init__.py: importamos o novo processador e acrescentamos um cenário com transferência bancária à execução da aplicação.
+ - tests/test_payment.py: incluímos BankTransferProcessor nos testes parametrizados de processamento e registro do processador utilizado.
 
 **2. O fluxo principal de processamento precisou ser alterado?**
-TODO
+Não, todo continuo direitinho. PaymentProcessor.process_order() continua criando o pagamento por meio de create_payment() e chamando pay(order.total()). O OrderService também mantém a sequência de checkout, pagamento e notificação. Apenas foi adicionada a opcão no inicialização da aplicação.
 
 **3. Quais classes existentes precisaram ser modificadas?**
-TODO
+Nenhuma classe existente precisou ser modificada. 
 
 **4. Explique como o Factory Method contribuiu para essa extensão.**
-TODO
+O fato de que BankTransferProcessor implementa create_payment() e herda o fluxo principal evita o uso de condicionais e permite adicionar novos pagamentos sem alterar o código existente. 
 
 **5. Compare essa alteração com a inclusão do canal KIOSK.
 Quais são as semelhanças e diferenças arquiteturais entre as duas extensões?**
-TODO
+
+Ambas as extensões preservam o código existente baseandose nas abstrações atuais. Para o KIOSK (Abstract Factory), cria-se sua família de produtos, registrando-a sem alterar o código base. Para a Transferência Bancária, cria-se BankTransferPayment e o procesador dele, que herda e reaproveita o fluxo padrão.
+Cuando adicionamos um novo canal e um novo método de pagamento de forma totalmente independente, qualquer canal pode usar o novo processador de pagamento.
